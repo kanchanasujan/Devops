@@ -14,8 +14,6 @@ systemctl enable catalogue
 systemctl restart catalogue
 
 
-sudo apt-get purge mysql-server mysql-client mysql-common mysql-server-core-* mysql-client-core-*
-sudo apt-get autoremove
-sudo apt-get autoclean
+mongodb://mongodb:RoboShop@1@<Server_IP_Address>:27017/
 
 
