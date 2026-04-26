@@ -4,6 +4,13 @@ git --version
 cd Devops/roboshop-shell-v1/
  git pull
  sudo bash frontend.sh
-abc
 
-UPDATE mysql.user SET authentication_string=PASSWORD("RoboShop@1") WHERE User="root";
+sudo systemctl status mysqld
+mysql -u root -pRoboShop@1
+
+
+systemctl daemon-reload
+systemctl enable catalogue
+systemctl restart catalogue
+
+
