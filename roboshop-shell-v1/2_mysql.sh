@@ -5,6 +5,6 @@ systemctl start mysqld
 mysql -u root -e "
   CREATE USER 'root'@'%' IDENTIFIED BY 'RoboShop@1';
   GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
-  ALTER USER 'root'@'mysql-dev.kanchanadevisujan.online' IDENTIFIED BY 'RoboShop@1';
+  ALTER USER 'root'@'10.0.0.5' IDENTIFIED BY 'RoboShop@1';
   FLUSH PRIVILEGES;
 "
