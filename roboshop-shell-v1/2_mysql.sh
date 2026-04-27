@@ -7,6 +7,6 @@ mysql -u root -e "
   FLUSH PRIVILEGES;
   CREATE USER 'root'@'%' IDENTIFIED BY 'RoboShop@1';
   GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
-  ALTER USER 'root'@'10.0.0.5' IDENTIFIED BY 'RoboShop@1';
+  ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';
   FLUSH PRIVILEGES;
 "
