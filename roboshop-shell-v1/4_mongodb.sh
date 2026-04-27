@@ -4,6 +4,6 @@ dnf install -y mongodb-org
 systemctl enable mongod
 systemctl start mongod
 
-sed -i 's/bindIp: mongod-dev.kanchanadevisujan.online/bindIp: 0.0.0.0/' /etc/mongod.conf
+sed -i 's/bindIp: localhost/bindIp: 0.0.0.0/' /etc/mongod.conf
 
 systemctl restart mongod
