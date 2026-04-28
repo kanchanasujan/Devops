@@ -16,4 +16,23 @@ systemctl restart catalogue
 
 mongodb://mongodb:RoboShop@1@<Server_IP_Address>:27017/
 
+python3 -m pip show ansible | grep Location
+
+sudo dnf list all | grep ansible-core
+
+sudo dnf install python3-pip -y
+
+pip3.12 install ansible
+
+pip list | grep ansible
+
+ansible -i test.ini all --list-hosts
+
+ansible -i sample.ini all -m ping -u devops -k
+
+ansible-playbook -i sample.ini test.yml -u devops -k
+
+yum list installed | grep nginx
+
+
 
