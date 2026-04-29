@@ -1,0 +1,8 @@
+- name: Setup Frontend Component
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: present
