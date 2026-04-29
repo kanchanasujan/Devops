@@ -33,3 +33,5 @@ ansible -i sample.ini all -m ping -u devops -k
 ansible-playbook -i sample.ini test.yml -u devops -k
 
 yum list installed | grep nginx
+
+ansible-playbook -i 10.0.0.5, 01-sample.yml -e ansible_user=devops -e ansible_password=Devops@12345
