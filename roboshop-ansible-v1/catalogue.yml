@@ -1,0 +1,78 @@
+- name: Setup Catalogue Component
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create Application User
+      ansible.builtin.user:
+        name: appuser
+        system: yes
+        shell: /bin/false
+        create_home: no
+
+    - name: Copy SystemD Service file
+      ansible.builtin.copy:
+        src: catalogue.service
+        dest: /etc/systemd/system/catalogue.service
+
+    - name: Install GoLang & Git
+      ansible.builtin.dnf:
+        name:
+          - golang
+          - git
+        state: present
+
+    - name: Install MySQL Client
+      ansible.builtin.dnf:
+        name: mysql8.4
+        state: present
+
+    - name: Remove folder for application
+      ansible.builtin.file:
+        path: /app
+        state: absent
+
+    - name: Create folder for application
+      ansible.builtin.file:
+        path: /app
+        state: directory
+
+    - name: Download Application Content
+      ansible.builtin.unarchive:
+        src: https://raw.githubusercontent.com/raghudevopsb89/roboshop-microservices/main/artifacts/catalogue.zip
+        dest: /app
+        remote_src: yes
+
+    - name: Load Schema
+      ansible.builtin.shell: mysql -h mysql-dev.rdevopsb89.online -u root -pRoboShop@1 < db/schema.sql
+      args:
+        chdir: /app
+
+    - name: Load App User
+      ansible.builtin.shell: mysql -h mysql-dev.rdevopsb89.online -u root -pRoboShop@1 < db/app-user.sql
+      args:
+        chdir: /app
+
+    - name: Load Master Data
+      ansible.builtin.shell: mysql -h mysql-dev.rdevopsb89.online -u root -pRoboShop@1 catalogue < db/master-data.sql
+      args:
+        chdir: /app
+
+    - name: Compile Application Code
+      ansible.builtin.shell: go mod tidy && CGO_ENABLED=0 go build -o /app/catalogue .
+      args:
+        chdir: /app
+
+    - name: Apply permission for application folder
+      ansible.builtin.file:
+        path: /app
+        owner: appuser
+        group: appuser
+        recurse: yes
+        mode: 'o-rwx'
+
+    - name: Start Service
+      ansible.builtin.systemd_service:
+        name: catalogue
+        state: restarted
+        enabled: yes
+        daemon_reload: yes
