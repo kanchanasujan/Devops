@@ -1,0 +1,58 @@
+- name: Setup Payment Component
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create Application User
+      ansible.builtin.user:
+        name: appuser
+        system: yes
+        shell: /bin/false
+        create_home: no
+
+    - name: Copy SystemD Service file
+      ansible.builtin.copy:
+        src: payment.service
+        dest: /etc/systemd/system/payment.service
+
+    - name: Install Python & Pip
+      ansible.builtin.dnf:
+        name:
+          - python3
+          - python3-pip
+        state: present
+
+    - name: Remove folder for application
+      ansible.builtin.file:
+        path: /app
+        state: absent
+
+    - name: Create folder for application
+      ansible.builtin.file:
+        path: /app
+        state: directory
+
+    - name: Download Application Content
+      ansible.builtin.unarchive:
+        src: https://raw.githubusercontent.com/raghudevopsb89/roboshop-microservices/main/artifacts/payment.zip
+        dest: /app
+        remote_src: yes
+
+    - name: Install App Dependencies
+      ansible.builtin.shell: pip3 install -r requirements.txt
+      args:
+        chdir: /app
+
+    - name: Apply permission for application folder
+      ansible.builtin.file:
+        path: /app
+        owner: appuser
+        group: appuser
+        recurse: yes
+        mode: 'o-rwx'
+
+    - name: Start Service
+      ansible.builtin.systemd_service:
+        name: payment
+        state: restarted
+        enabled: yes
+        daemon_reload: yes
