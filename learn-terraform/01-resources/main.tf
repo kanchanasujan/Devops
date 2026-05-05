@@ -4,5 +4,5 @@ resource "azurerm_resource_group" "WestEurope_Resource_group" {
 }
 
 provider "azurerm" {
-  # Configuration options
+   features {}
 }
