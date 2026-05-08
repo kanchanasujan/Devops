@@ -30,7 +30,11 @@ output "some_list_0" {
   value = var.some_list[0]
 }
 
-output "some_map_a" {
+output "some_list_1" {
+  value = var.some_list[0]
+}
+
+output "some_map_b" {
   value = var.some_map["a"]
 }
 
