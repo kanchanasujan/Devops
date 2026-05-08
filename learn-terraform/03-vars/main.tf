@@ -31,7 +31,7 @@ output "some_list_0" {
 }
 
 output "some_list_1" {
-  value = var.some_list[0]
+  value = var.some_list[1]
 }
 
 output "some_map_b" {
