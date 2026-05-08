@@ -15,13 +15,6 @@ resource "azurerm_network_interface" "main" {
   }
 }
 
-resource "azurerm_network_security" "main" {
-  provider = azurerm
-  config {
-    network_security_group_id = "/subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGroups/denmark-east-rg/providers/Microsoft.Network/networkSecurityGroups/network-grp"
-  }
-}
-
 resource "azurerm_linux_virtual_machine" "main" {
   name                  = "frontend-vm"
   location              = "Denmark East"

@@ -39,3 +39,7 @@ ansible-playbook -i 10.0.0.5, 01-sample.yml -e ansible_user=devops -e ansible_pa
 ansible-playbook -i frontend-dev.kanchanadevisujan.online, frontend.yml -e ansible_user=devops -e ansible_password=Devops@12345
 
 ansible-playbook -i mysql-dev.kanchanadevisujan.online, frontend.yml -e ansible_user=devops -e ansible_password=Devops@12345
+
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+sudo yum -y install terraform
