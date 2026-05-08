@@ -1,10 +1,10 @@
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
-  features{}
+  features {}
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "frontend-vm"
+  name                = "test-nic"
   location            = "Denmark East"
   resource_group_name = "denmark-east-rg"
 
@@ -15,8 +15,9 @@ resource "azurerm_network_interface" "main" {
   }
 }
 
+
 resource "azurerm_linux_virtual_machine" "main" {
-  name                  = "frontend-vm"
+  name                  = "test-vm"
   location              = "Denmark East"
   resource_group_name   = "denmark-east-rg"
   network_interface_ids = [azurerm_network_interface.main.id]
@@ -29,7 +30,6 @@ resource "azurerm_linux_virtual_machine" "main" {
     storage_account_type = "Standard_LRS"
   }
 
- 
   admin_password = "Devops@12345"
   admin_username = "devops"
 
