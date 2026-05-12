@@ -1,6 +1,10 @@
 - name: Variables demo - Inventory
-  hosts: all
+  hosts: web
   tasks:
     - name: Print Inventory variables - Host level
       debug:
         msg: "from_ini_host - {{ from_ini_host }}"
+
+    - name: Print Inventory variables - group level
+      debug:
+        msg: "from_ini_group - {{ from_ini_group }}"
