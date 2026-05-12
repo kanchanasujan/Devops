@@ -1,7 +1,3 @@
-- name: Setup MySQL Component
-  hosts: all
-  become: yes
-  tasks:
     - name: Install MySQL Server
       ansible.builtin.dnf:
         name: mysql8.4-server
