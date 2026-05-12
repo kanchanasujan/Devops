@@ -1,7 +1,3 @@
-- name: Setup Valkey Component
-  hosts: all
-  become: yes
-  tasks:
     - name: Install Valkey
       ansible.builtin.dnf:
         name: valkey
