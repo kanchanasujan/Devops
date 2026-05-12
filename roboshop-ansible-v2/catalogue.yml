@@ -1,0 +1,6 @@
+- name: Setup catalogue Component
+  hosts: all
+  become: yes
+  roles:
+    - catalogue
+

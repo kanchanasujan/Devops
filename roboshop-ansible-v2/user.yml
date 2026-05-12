@@ -1,0 +1,6 @@
+- name: Setup User Component
+  hosts: all
+  become: yes
+  roles:
+    - user
+

@@ -1,0 +1,6 @@
+- name: Setup Ratings Component
+  hosts: all
+  become: yes
+  roles:
+    - ratings
+

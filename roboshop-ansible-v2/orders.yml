@@ -1,0 +1,6 @@
+- name: Setup Orders Component
+  hosts: all
+  become: yes
+  roles:
+    - orders
+

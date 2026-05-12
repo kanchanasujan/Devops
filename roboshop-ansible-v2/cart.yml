@@ -1,0 +1,6 @@
+- name: Setup Cart Component
+  hosts: all
+  become: yes
+  roles:
+    - cart
+

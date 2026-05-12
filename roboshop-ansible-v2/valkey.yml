@@ -1,0 +1,6 @@
+- name: Setup Valkey Component
+  hosts: all
+  become: yes
+  roles:
+    - valkey
+
