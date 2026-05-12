@@ -46,6 +46,9 @@ resource "azurerm_dns_a_record" "main" {
 }
 
 resource "null_resource" "ansible" {
+
+  for_each = var.components
+  
   triggers = {
     instance_id = azurerm_linux_virtual_machine.main[each.key].id
   }
