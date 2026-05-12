@@ -1,5 +1,5 @@
 - name: Variables demo - Inventory
-  hosts: web
+  hosts: all
   tasks:
     - name: Print Inventory variables - Host level
       debug:
