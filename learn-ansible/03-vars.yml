@@ -9,16 +9,16 @@
       debug:
         msg: "from_ini_group - {{ from_ini_group }}"
 
-    - name: Variables demo - Play Level
-      hosts: web
-      vars:
-        from_play: 300
-      vars_files:
-        - demo-vars.yml
-      tasks:
-        - name: Print variables - Play level
-          debug:
-            msg: "from_play - {{ from_play }}"
-        - name: Print variables - Play level from file
-          debug:
-            msg: "from_files - {{ from_files }}"
+- name: Variables demo - Play Level
+  hosts: web
+  vars:
+    from_play: 300
+  vars_files:
+    - demo-vars.yml
+  tasks:
+    - name: Print variables - Play level
+      debug:
+        msg: "from_play - {{ from_play }}"
+    - name: Print variables - Play level from file
+      debug:
+        msg: "from_files - {{ from_files }}"
