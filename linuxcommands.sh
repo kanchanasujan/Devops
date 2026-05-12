@@ -43,7 +43,9 @@ ansible-playbook -i 10.0.0.5, 01-sample.yml -e ansible_user=devops -e ansible_pa
 
 ansible-playbook -i frontend-dev.kanchanadevisujan.online, frontend.yml -e ansible_user=devops -e ansible_password=Devops@12345
 
-ansible-playbook -i mysql-dev.kanchanadevisujan.online, frontend.yml -e ansible_user=devops -e ansible_password=Devops@12345
+ansible-playbook -i frontend-dev.kanchanadevisujan.online, frontend.yml -e ansible_user=devops -e ansible_password=Devops@12345
+
+ansible-playbook -i sample.ini -e ansible_user=devops -e ansible_password=Devops@12345 03-vars.yml
 
 
 Terraform Installation :-
