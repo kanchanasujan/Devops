@@ -20,11 +20,16 @@ python3 -m pip show ansible | grep Location
 
 sudo dnf list all | grep ansible-core
 
+Ansible Installation :-
+------------------------
+
 sudo dnf install python3-pip -y
 
 pip3.12 install ansible
 
 pip list | grep ansible
+
+------------------------------------------------------------------------------------------------------------------------------------------------
 
 ansible -i test.ini all --list-hosts
 
@@ -40,21 +45,33 @@ ansible-playbook -i frontend-dev.kanchanadevisujan.online, frontend.yml -e ansib
 
 ansible-playbook -i mysql-dev.kanchanadevisujan.online, frontend.yml -e ansible_user=devops -e ansible_password=Devops@12345
 
+
+Terraform Installation :-
+------------------------
+
 sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 sudo yum -y install terraform
 
+Azure CLI Installation :-
+-----------------------
 
 sudo rpm --import https://packages.microsoft.com/keys/microsoft-2025.asc
-
 sudo dnf install -y https://packages.microsoft.com/config/rhel/10/packages-microsoft-prod.rpm
-
 sudo dnf install azure-cli
 
 https://login.microsoft.com/device
+
+Terraform Execution :-
+--------------------
 
 terraform init
 terraform plan
 terraform  apply
 terraform destroy
+terraform apply -auto-approve
+
+subnet id = /subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGroups/denmark-east-rg/providers/Microsoft.Network/virtualNetworks/rhel10-vm/subnets/rhel10-vmSubnet
+
+source_image_id = /subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGroups/denmark-east-rg/providers/Microsoft.Compute/galleries/rhel10/images/1.0.0
 
