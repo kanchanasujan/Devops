@@ -22,3 +22,8 @@
     - name: Print variables - Play level from file
       debug:
         msg: "from_files - {{ from_files }}"
+
+    - name: Variables demo - From Role
+      hosts: web
+      roles:
+        - sample
