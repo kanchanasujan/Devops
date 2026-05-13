@@ -17,7 +17,7 @@ resource "azurerm_network_interface" "main" {
     name                          =  "${each.key}-nic"
     subnet_id                     = "/subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGroups/denmark-east-rg/providers/Microsoft.Network/virtualNetworks/rhel10-vm/subnets/rhel10-vmSubnet"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = [azurerm_public_ip.main[each.key].id]
+    public_ip_address_id          = azurerm_public_ip.main[each.key].id
   }
 }
 
