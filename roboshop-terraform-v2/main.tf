@@ -24,7 +24,6 @@ resource "azurerm_network_interface" "main" {
 data "azurerm_network_security_group" "existing" {
   for_each  = var.components
   name                = "network-grp"
-  location            = var.location
   resource_group_name = var.resource_group_name
 }
 
