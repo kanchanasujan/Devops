@@ -46,7 +46,8 @@ resource "azurerm_dns_a_record" "main" {
 }
 
 resource "null_resource" "ansible" {
-
+    depends_on = [azurerm_linux_virtual_machine.main]
+    
   for_each = var.components
   
   triggers = {
