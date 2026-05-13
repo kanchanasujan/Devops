@@ -1,11 +1,3 @@
-- name: Configure DNF to skip unavailable repositories
-  ini_file:
-    path: /etc/dnf/dnf.conf
-    section: main
-    option: skip_if_unavailable
-    value: "True"
-  become: true
-
 - name: RoboShop Project Setup
   hosts: all
   become: yes
