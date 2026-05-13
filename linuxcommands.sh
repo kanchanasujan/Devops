@@ -13,6 +13,10 @@ systemctl daemon-reload
 systemctl enable catalogue
 systemctl restart catalogue
 
+sudo systemctl stop nginx
+sudo dnf remove nginx
+sudo rm -rf /etc/nginx /var/log/nginx /usr/share/nginx
+
 
 mongodb://mongodb:RoboShop@1@<Server_IP_Address>:27017/
 
