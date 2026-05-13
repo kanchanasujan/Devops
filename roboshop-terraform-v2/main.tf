@@ -21,12 +21,6 @@ resource "azurerm_network_interface" "main" {
   }
 }
 
-data "azurerm_network_security_group" "existing" {
-  for_each  = var.components
-  name                = "network-grp"
-  resource_group_name = var.resource_group_name
-}
-
 resource "azurerm_linux_virtual_machine" "main" {
   for_each  = var.components
   name                  = "${each.key}-vm"
@@ -59,4 +53,11 @@ resource "azurerm_dns_a_record" "main" {
   resource_group_name = var.resource_group_name
   ttl                 = 30
   records             = [azurerm_network_interface.main[each.key].private_ip_address]
+}
+
+
+data "azurerm_network_security_group" "existing" {
+  for_each  = var.components
+  name                = "network-grp"
+  resource_group_name = var.resource_group_name
 }
