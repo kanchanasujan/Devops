@@ -1,3 +1,12 @@
+resource "azurerm_public_ip" "main" {
+  for_each  = var.components
+  name                = "${each.key}-nic"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
+
 resource "azurerm_network_interface" "main" {
   for_each  = var.components
   name                = "${each.key}-nic"
@@ -36,6 +45,22 @@ resource "azurerm_linux_virtual_machine" "main" {
 
 }
 
+data "azurerm_network_security_group" "existing" {
+  for_each  = var.components
+  name                = "network-grp"
+  resource_group_name = var.resource_group_name
+}
+
+resource "azurerm_network_interface_security_group_association" "global_assoc" {
+  for_each                  = azurerm_network_interface.main
+  network_interface_id      = each.value.id
+  network_security_group_id = data.azurerm_network_security_group.existing[each].id
+
+  # Forces Terraform to wait until the VM instances are completely built
+  depends_on = [ azurerm_linux_virtual_machine.main ]
+}
+
+
 resource "azurerm_dns_a_record" "main" {
   for_each = var.components
   name                = "${each.key}-dev"
@@ -47,7 +72,7 @@ resource "azurerm_dns_a_record" "main" {
 
 resource "null_resource" "ansible" {
     depends_on = [azurerm_linux_virtual_machine.main]
-    
+
   for_each = var.components
   
   triggers = {

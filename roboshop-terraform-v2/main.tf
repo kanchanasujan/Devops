@@ -55,7 +55,7 @@ data "azurerm_network_security_group" "existing" {
 resource "azurerm_network_interface_security_group_association" "global_assoc" {
   for_each                  = azurerm_network_interface.main
   network_interface_id      = each.value.id
-  network_security_group_id = data.azurerm_network_security_group.existing[each.key].id
+  network_security_group_id = data.azurerm_network_security_group.existing[each].id
 
   # Forces Terraform to wait until the VM instances are completely built
   depends_on = [ azurerm_linux_virtual_machine.main ]
