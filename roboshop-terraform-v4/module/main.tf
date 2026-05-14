@@ -44,7 +44,6 @@ resource "azurerm_linux_virtual_machine" "main" {
 }
 
 data "azurerm_network_security_group" "existing" {
-  for_each  = var.component_name
   name                = "network-grp"
   resource_group_name = var.rgname
 }
