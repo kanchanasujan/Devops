@@ -43,9 +43,15 @@ resource "azurerm_linux_virtual_machine" "main" {
 
 }
 
+data "azurerm_network_security_group" "existing" {
+  for_each  = var.component_name
+  name                = "network-grp"
+  resource_group_name = var.rgname
+}
+
 
 resource "azurerm_network_interface_security_group_association" "global_assoc" {
-  for_each                  = azurerm_network_interface.main
+  #for_each                  = azurerm_network_interface.main
   network_interface_id      = each.value.id
   network_security_group_id = data.azurerm_network_security_group.existing[each.key].id
 
