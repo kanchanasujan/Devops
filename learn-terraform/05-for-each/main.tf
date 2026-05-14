@@ -10,3 +10,8 @@ variable "abc" {
 resource "null_resource" "test" {
   for_each = var.abc
 }
+
+  
+output "test"{
+  value =  var.abc
+}
