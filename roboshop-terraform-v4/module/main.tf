@@ -43,11 +43,11 @@ resource "azurerm_linux_virtual_machine" "main" {
 
 }
 
-data "azurerm_network_security_group" "existing" {
-  for_each  = var.component_name
-  name                = "network-grp"
-  resource_group_name = var.rgname
-}
+# data "azurerm_network_security_group" "existing" {
+#   for_each  = var.component_name
+#   name                = "network-grp"
+#   resource_group_name = var.rgname
+# }
 
 
 # resource "azurerm_network_interface_security_group_association" "global_assoc" {
