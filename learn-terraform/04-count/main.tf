@@ -1,5 +1,5 @@
-resource "null_resource" "a" {
-  count = 10
+resource "null_resource" "cnt" {
+  count = 5
 }
 
 provider "azurerm" {
@@ -18,8 +18,8 @@ resource "azurerm_network_interface" "private-ips" {
 
   ip_configuration {
     name                          =  "${var.components[count.index]}-nic"
-    subnet_id                     = "/subscriptions/3f2e42e1-ca06-4a99-8c56-be8d8ba306db/resourceGroups/denmark-east-rg/providers/Microsoft.Network/virtualNetworks/rhel10-vmVNET/subnets/rhel10-vmSubnet"
-    private_ip_address_allocation = "Dynamic"
+   subnet_id                     = "/subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGroups/denmark-east-rg/providers/Microsoft.Network/virtualNetworks/rhel10-vm/subnets/rhel10-vmSubnet"
+   private_ip_address_allocation = "Dynamic"
   }
 }
 
