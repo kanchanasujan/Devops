@@ -24,7 +24,7 @@ resource "azurerm_linux_virtual_machine" "main" {
   location              = data.azurerm_resource_group.main.location
   resource_group_name   = data.azurerm_resource_group.main.name
   network_interface_ids = [azurerm_network_interface.main.id]
-  size               = each.value
+  size               = "Standard_B1s"
 
   source_image_id = var.image_id
 
@@ -44,7 +44,7 @@ resource "azurerm_linux_virtual_machine" "main" {
 }
 
 data "azurerm_network_security_group" "existing" {
-    for_each  = var.component_name
+  for_each  = var.component_name
   name                = "network-grp"
   resource_group_name = data.azurerm_resource_group.main.name
 }
