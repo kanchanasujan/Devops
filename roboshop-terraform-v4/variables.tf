@@ -1,7 +1,3 @@
-variable "location" {
-  default = "Denmark East"
-}
-
 variable "rgname" {
   default = "denmark-east-rg"
 }

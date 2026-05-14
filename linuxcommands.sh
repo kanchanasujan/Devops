@@ -84,3 +84,7 @@ source_image_id = /subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGr
 az network nic show --resource-group denmark-east-rg --name frontend-nic --query "networkSecurityGroup.id"
 
 ansible-pull -i localhost, -U https://github.com/kanchanasujan/Devops.git roboshop-ansible-v3/roboshop.yml -e component_name=frontend -e env=dev
+
+data "azurerm_resource_group" "main" {
+  name = ""denmark-east-rg"
+}
