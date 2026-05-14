@@ -44,19 +44,20 @@ resource "azurerm_linux_virtual_machine" "main" {
 }
 
 data "azurerm_network_security_group" "existing" {
+  for_each  = var.component_name
   name                = "network-grp"
   resource_group_name = var.rgname
 }
 
 
-resource "azurerm_network_interface_security_group_association" "global_assoc" {
-  for_each                  = azurerm_network_interface.main
-  network_interface_id      = each.value.id
-  network_security_group_id = data.azurerm_network_security_group.existing[each.key].id
+# resource "azurerm_network_interface_security_group_association" "global_assoc" {
+#   for_each                  = azurerm_network_interface.main
+#   network_interface_id      = each.value.id
+#   network_security_group_id = data.azurerm_network_security_group.existing[each.key].id
 
-  # Forces Terraform to wait until the VM instances are completely built
-  depends_on = [ azurerm_linux_virtual_machine.main ]
-}
+#   # Forces Terraform to wait until the VM instances are completely built
+#   depends_on = [ azurerm_linux_virtual_machine.main ]
+# }
 
 
 resource "azurerm_dns_a_record" "main" {
