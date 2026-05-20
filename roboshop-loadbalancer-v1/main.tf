@@ -14,6 +14,7 @@ module "db" {
 module "apps" {
   source = "./module"
   depends_on = [module.db]
+  port       = each.value["port"]
 
   for_each = var.apps
   component_name = each.key
@@ -29,7 +30,8 @@ module "apps" {
 module "ui" {
   source = "./module"
   depends_on = [module.apps]
-
+  port           = each.value["port"]
+  
   for_each = var.ui
   component_name = each.key
   rgname = var.rgname
