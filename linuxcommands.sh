@@ -88,3 +88,7 @@ ansible-pull -i localhost, -U https://github.com/kanchanasujan/Devops.git robosh
 data "azurerm_resource_group" "main" {
   name = ""denmark-east-rg"
 }
+
+
+terraform state rm 'module.ui["frontend"].azurerm_lb_backend_address_pool.main'
+terraform state rm 'module.ui["frontend"].azurerm_lb_backend_address_pool_address.main'
