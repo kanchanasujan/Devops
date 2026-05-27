@@ -6,6 +6,9 @@ sudo yum check-update
 sudo yum install -y git
 git clone https://github.com/kanchanasujan/Devops.git
 
+#Install Make
+sudo dnf install -y make
+
 #Install Terraform
 sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
