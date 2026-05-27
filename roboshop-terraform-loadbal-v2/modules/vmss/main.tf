@@ -103,7 +103,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "main" {
   network_interface {
     name    = "${var.component_name}-${var.env}-nic"
     primary = true
-    network_security_group_id = data.azurerm_network_security_group.existing[count.index].id
+    network_security_group_id = data.azurerm_network_security_group.existing[0].id
 
     ip_configuration {
       name      = "internal"
