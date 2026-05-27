@@ -8,19 +8,19 @@ resource "azurerm_public_ip" "main" {
 }
 
 data "azurerm_network_security_group" "existing" {
-  count               =  var.lb_type == "public" ? 1 : 0
+  count               =  var.lb_type != null ? 1 : 0
   name                = "network-grp"
   resource_group_name = data.azurerm_resource_group.main.name
 }
 
-resource "azurerm_network_interface_security_group_association" "global_assoc" {
-  count                     = var.lb_type == "public" ? 1 : 0
-  network_interface_id      = azurerm_network_interface.main[count.index].id
-  network_security_group_id = data.azurerm_network_security_group.existing[count.index].id
+# resource "azurerm_network_interface_security_group_association" "global_assoc" {
+#   count                     = var.lb_type == "public" ? 1 : 0
+#   network_interface_id      = azurerm_network_interface.main[count.index].id
+#   network_security_group_id = data.azurerm_network_security_group.existing[count.index].id
 
-  # Forces Terraform to wait until the VM instances are completely built
-  depends_on = [ azurerm_linux_virtual_machine.main ]
-}
+#   # Forces Terraform to wait until the VM instances are completely built
+#   depends_on = [ azurerm_linux_virtual_machine.main ]
+# }
 
 
 resource "azurerm_lb" "main" {
@@ -43,13 +43,13 @@ resource "azurerm_lb_backend_address_pool" "main" {
   name            = "BackEndAddressPool"
 }
 
-resource "azurerm_lb_backend_address_pool_address" "main" {
-  count                               = var.lb_type != null ? 1 : 0
-  name                                = "${var.component_name}-${var.env}-${count.index}"
-  backend_address_pool_id             = azurerm_lb_backend_address_pool.main[0].id
-  ip_address                          = azurerm_network_interface.main[count.index].private_ip_address
-  virtual_network_id                  = var.subnet_id
-}
+# resource "azurerm_lb_backend_address_pool_address" "main" {
+#   count                               = var.lb_type != null ? 1 : 0
+#   name                                = "${var.component_name}-${var.env}-${count.index}"
+#   backend_address_pool_id             = azurerm_lb_backend_address_pool.main[0].id
+#   ip_address                          = azurerm_network_interface.main[count.index].private_ip_address
+#   virtual_network_id                  = var.subnet_id
+# }
 
 resource "azurerm_lb_probe" "main" {
   count = var.lb_type != null ? 1 : 0
@@ -103,6 +103,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "main" {
   network_interface {
     name    = "${var.component_name}-${var.env}-nic"
     primary = true
+    network_security_group_id = data.azurerm_network_security_group.existing[count.index].id
 
     ip_configuration {
       name      = "internal"
