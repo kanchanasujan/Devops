@@ -23,3 +23,31 @@ sudo dnf -y install azure-cli
 git --version >> /var/log/vm-init.log
 terraform --version >> /var/log/vm-init.log
 az --version >> /var/log/vm-init.log
+
+
+resource "azurerm_public_ip" "nat_pip" {
+  name                = "nat-gw-pip"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
+
+resource "azurerm_nat_gateway" "nat_gateway" {
+  name                    = "nat-gw"
+  location                = var.rglocation
+  resource_group_name     = var.rgname
+  sku_name                = "Standard"
+  idle_timeout_in_minutes = 4
+  zones                   = ["1"]
+}
+
+resource "azurerm_nat_gateway_public_ip_association" "nat_gw_pip_assoc" {
+   nat_gateway_id       = azurerm_nat_gateway.nat_gateway.id
+   public_ip_address_id = azurerm_public_ip.nat_pip.id
+}
+
+resource "azurerm_subnet_nat_gateway_association" "subnet_nat_assoc" {
+  subnet_id      = azurerm_subnet.subnet.id
+  nat_gateway_id = azurerm_nat_gateway.nat_gateway.id
+}

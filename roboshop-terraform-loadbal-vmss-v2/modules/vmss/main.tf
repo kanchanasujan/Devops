@@ -28,6 +28,7 @@ resource "azurerm_lb" "main" {
   name                = "${var.component_name}-${var.env}-lb"
   location            = var.rglocation
   resource_group_name = var.rgname
+  sku                 = "Standard"
   
   frontend_ip_configuration {
     name                          = "${var.component_name}-${var.env}"
@@ -109,7 +110,6 @@ resource "azurerm_linux_virtual_machine_scale_set" "main" {
       name      = "internal"
       primary   = true
       subnet_id = var.subnet_id
-
       load_balancer_backend_address_pool_ids = var.lb_type != null ? [azurerm_lb_backend_address_pool.main[0].id] : null
     }
   }
