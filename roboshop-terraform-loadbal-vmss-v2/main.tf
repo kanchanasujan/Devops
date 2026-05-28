@@ -3,7 +3,8 @@ module "db" {
 
   for_each       = var.db
   component_name = each.key
-  rgname    = var.rgname
+  rgname     = data.azurerm_resource_group.main.name
+  rglocation = data.azurerm_resource_group.main.location
   image_id  = var.image_id
   env       = var.env
   subnet_id = var.subnet_id
@@ -23,6 +24,7 @@ module "apps" {
   env         = var.env
   image_id    = var.image_id
   rgname     = data.azurerm_resource_group.main.name
+  rglocation = data.azurerm_resource_group.main.location
   subnet_id   = var.subnet_id
 }
 
