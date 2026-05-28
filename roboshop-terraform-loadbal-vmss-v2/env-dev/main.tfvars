@@ -1,7 +1,7 @@
 env      = "dev"
-location = "Denmark East"
+rglocation = "Denmark East"
 rgname   = "denmark-east-rg"
-image_id = "/subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGroups/denmark-east-rg/providers/Microsoft.Compute/galleries/rhel10/images/1.0.0"
+image_id = "/subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGroups/denmark-east-rg/providers/Microsoft.Compute/galleries/rhel/images/1.0.0/versions/1.0.0"
 subnet_id = "/subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGroups/denmark-east-rg/providers/Microsoft.Network/virtualNetworks/workstation-vnet/subnets/workstation-subnet"
 
 db = {

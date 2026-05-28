@@ -1,8 +1,8 @@
 resource "azurerm_network_interface" "main" {
   count               = var.vm_count
   name                = "${var.component_name}-${var.env}-nic${count.index}"
-  location            = data.azurerm_resource_group.main.location
-  resource_group_name = data.azurerm_resource_group.main.name
+  location            = var.rglocation
+  resource_group_name = var.rgname
 
   ip_configuration {
     name                = "${var.component_name}-${var.env}-nic${count.index}"
@@ -14,8 +14,8 @@ resource "azurerm_network_interface" "main" {
 resource "azurerm_linux_virtual_machine" "main" {
   count               = var.vm_count
   name                = "${var.component_name}-${var.env}-vm${count.index}"
-  location              = data.azurerm_resource_group.main.location
-  resource_group_name   = data.azurerm_resource_group.main.name
+  location              = var.rglocation
+  resource_group_name   = var.rgname
   network_interface_ids = [azurerm_network_interface.main[count.index].id]
   size               = "Standard_B1ms"
   admin_password = "Devops@12345"
@@ -40,7 +40,7 @@ resource "azurerm_linux_virtual_machine" "main" {
 data "azurerm_network_security_group" "existing" {
   count               =  var.vm_count
   name                = "network-grp"
-  resource_group_name = data.azurerm_resource_group.main.name
+  resource_group_name = var.rgname
 }
 
 resource "azurerm_network_interface_security_group_association" "global_assoc" {
@@ -55,7 +55,7 @@ resource "azurerm_network_interface_security_group_association" "global_assoc" {
 resource "azurerm_dns_a_record" "main" {
   name                = "${var.component_name}-${var.env}"
   zone_name           = "kanchanadevisujan.online"
-  resource_group_name = data.azurerm_resource_group.main.name
+  resource_group_name = var.rgname
   ttl                 = 30
   records             = [azurerm_network_interface.main[0].private_ip_address]
 }

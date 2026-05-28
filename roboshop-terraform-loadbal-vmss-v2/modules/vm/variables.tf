@@ -1,5 +1,6 @@
 variable "component_name" {}
 variable "rgname" {}
+variable "rglocation" {}
 variable "image_id" {}
 variable "env" {}
 variable "lb_type" {

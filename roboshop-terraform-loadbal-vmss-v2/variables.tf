@@ -1,5 +1,5 @@
 variable "env" {}
-variable "location" {}
+variable "rglocation" {}
 variable "rgname" {}
 variable "image_id" {}
 variable "db" {}

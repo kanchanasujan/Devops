@@ -40,5 +40,6 @@ module "ui" {
   env         = var.env
   image_id    = var.image_id
   rgname     = data.azurerm_resource_group.main.name
+  rglocation = data.azurerm_resource_group.main.location
   subnet_id   = var.subnet_id
 }

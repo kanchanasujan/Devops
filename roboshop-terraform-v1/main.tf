@@ -25,7 +25,7 @@ resource "azurerm_linux_virtual_machine" "frontend" {
   network_interface_ids = [azurerm_network_interface.frontend.id]
   size               = "Standard_B1s"
 
-  source_image_id = "/subscriptions/3f2e42e1-ca06-4a99-8c56-be8d8ba306db/resourceGroups/denmark-east-rg/providers/Microsoft.Compute/galleries/rhel10/images/1.0.0/versions/1.0.0"
+  source_image_id = "/subscriptions/3f2e42e1-ca06-4a99-8c56-be8d8ba306db/resourceGroups/denmark-east-rg/providers/Microsoft.Compute/galleries/rhel/images/1.0.0/versions/1.0.0"
 
   os_disk {
     caching              = "ReadWrite"
@@ -69,7 +69,7 @@ resource "azurerm_linux_virtual_machine" "mysql" {
   network_interface_ids = [azurerm_network_interface.mysql.id]
   size                  = "Standard_B1s"
 
-  source_image_id = "/subscriptions/3f2e42e1-ca06-4a99-8c56-be8d8ba306db/resourceGroups/denmark-east-rg/providers/Microsoft.Compute/galleries/rhel10/images/1.0.0/versions/1.0.0"
+  source_image_id = "/subscriptions/3f2e42e1-ca06-4a99-8c56-be8d8ba306db/resourceGroups/denmark-east-rg/providers/Microsoft.Compute/galleries/rhel/images/1.0.0/versions/1.0.0"
 
   os_disk {
     caching              = "ReadWrite"

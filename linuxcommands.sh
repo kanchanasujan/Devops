@@ -1,4 +1,4 @@
-sudo yum install git
+sudo yum install git -y
 git --version
     git clone https://github.com/kanchanasujan/Devops.git
 cd Devops/roboshop-shell-v1/
@@ -79,11 +79,13 @@ terraform apply -auto-approve
 
 subnet id = /subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGroups/denmark-east-rg/providers/Microsoft.Network/virtualNetworks/rhel10-vm/subnets/rhel10-vmSubnet
 
-source_image_id = /subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGroups/denmark-east-rg/providers/Microsoft.Compute/galleries/rhel10/images/1.0.0
+source_image_id = /subscriptions/50b00215-bc86-413d-a70f-7f58601e6267/resourceGroups/denmark-east-rg/providers/Microsoft.Compute/galleries/rhel/images/1.0.0
 
 az network nic show --resource-group denmark-east-rg --name frontend-nic --query "networkSecurityGroup.id"
 
 ansible-pull -i localhost, -U https://github.com/kanchanasujan/Devops.git roboshop-ansible-v3/roboshop.yml -e component_name=frontend -e env=dev
+
+ansible-pull -i localhost, -U https://github.com/kanchanasujan/Devops.git roboshop-ansible-v3/roboshop.yml -e component_name=${component_name} -e env=${env}
 
 data "azurerm_resource_group" "main" {
   name = ""denmark-east-rg"
