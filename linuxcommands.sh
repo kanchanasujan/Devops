@@ -87,10 +87,4 @@ ansible-pull -i localhost, -U https://github.com/kanchanasujan/Devops.git robosh
 
 ansible-pull -i localhost, -U https://github.com/kanchanasujan/Devops.git roboshop-ansible-v3/roboshop.yml -e component_name=${component_name} -e env=${env}
 
-data "azurerm_resource_group" "main" {
-  name = ""denmark-east-rg"
-}
-
-
-terraform state rm 'module.ui["frontend"].azurerm_lb_backend_address_pool.main'
-terraform state rm 'module.ui["frontend"].azurerm_lb_backend_address_pool_address.main'
+ssh-keygen -f "/home/devops/.ssh/known_hosts" -R "10.1.0.11"

@@ -31,7 +31,7 @@ resource "azurerm_lb" "main" {
   sku                 = "Standard"
   
   frontend_ip_configuration {
-    name                          = "${var.component_name}-${var.env}"
+    name                          = "frontend"
     private_ip_address_allocation = var.lb_type == "private" ? "Dynamic" : null
     subnet_id                     = var.lb_type == "private" ? var.subnet_id: null
     public_ip_address_id          = var.lb_type == "public" ? azurerm_public_ip.main[0].id : null
@@ -67,7 +67,7 @@ resource "azurerm_lb_rule" "main" {
   protocol                       = "Tcp"
   frontend_port                  = var.port
   backend_port                   = var.port
-  frontend_ip_configuration_name = "${var.component_name}-${var.env}"
+  frontend_ip_configuration_name = "frontend"
   backend_address_pool_ids       = [azurerm_lb_backend_address_pool.main[0].id]
   probe_id                       = azurerm_lb_probe.main[0].id
 }

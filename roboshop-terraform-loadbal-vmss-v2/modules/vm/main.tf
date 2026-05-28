@@ -13,7 +13,7 @@ resource "azurerm_network_interface" "main" {
 
 resource "azurerm_linux_virtual_machine" "main" {
   count               = var.vm_count
-  name                = "${var.component_name}-${var.env}-vm${count.index}"
+  name                = "${var.component_name}-${var.env}-${count.index}"
   location              = var.rglocation
   resource_group_name   = var.rgname
   network_interface_ids = [azurerm_network_interface.main[count.index].id]
