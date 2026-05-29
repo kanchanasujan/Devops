@@ -19,6 +19,18 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft-2025.asc
 sudo dnf install -y https://packages.microsoft.com/config/rhel/10/packages-microsoft-prod.rpm
 sudo dnf -y install azure-cli
 
+#Install Docker
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+
+sudo systemctl start docker
+sudo systemctl enable docker
+
+
+docker ps
+sudo systemctl stop docker.socket
+sudo systemctl disable docker.socket
+
 # Verify installations in the log
 git --version >> /var/log/vm-init.log
 terraform --version >> /var/log/vm-init.log
