@@ -54,6 +54,14 @@ docker run -d local/nginx
 docker ps -a
 docker inspect <container_id>
 curl <ipaddress>
+docker run -d -P local/nginx
+
+
+EXPOSE :-
+docker build -t local/nginx .
+docker run -d -P local/nginx
+docker ps 
+
 
 
 .
