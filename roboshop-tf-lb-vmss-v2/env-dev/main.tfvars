@@ -24,7 +24,7 @@ apps = {
   shipping     = {
     port = 8004
   }
-  order        = {
+  orders        = {
     port = 8007
   }
   notification = {

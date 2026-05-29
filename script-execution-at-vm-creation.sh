@@ -32,6 +32,14 @@ docker ps
 sudo systemctl stop docker.socket
 sudo systemctl disable docker.socket
 
+docker pull docer.io/library/nginx
+docker pull httpd:latest
+
+docker images
+docker run nginx
+
+
+
 # Verify installations in the log
 git --version >> /var/log/vm-init.log
 terraform --version >> /var/log/vm-init.log
