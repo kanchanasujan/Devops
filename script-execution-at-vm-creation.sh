@@ -33,7 +33,7 @@ docker ps a
 sudo systemctl stop docker.socket
 sudo systemctl disable docker.socket
 
-docker pull docer.io/library/nginx
+docker pull docker.io/library/nginx
 docker pull httpd:latest
 
 docker images
@@ -43,6 +43,13 @@ docker run -d nginx
 docker inspect <container_id>
 curl ipaddress
 docker run -d -p nginx
+
+docker build .
+docker build -f <filename> .
+
+docker images
+docker build -t local/redhat .
+
 
 
 
