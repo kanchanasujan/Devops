@@ -58,6 +58,13 @@
       args:
         chdir: /app
 
+      environment:
+        HOME: /root
+        GOPATH: /root/go
+        GOMODCACHE: /root/go/pkg/mod
+        GOCACHE: /root/.cache/go-build
+        PATH: "/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/root/go/bin"
+
     - name: Apply permission for application folder
       ansible.builtin.file:
         path: /app
