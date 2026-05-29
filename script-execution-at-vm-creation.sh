@@ -29,6 +29,7 @@ sudo systemctl enable docker
 
 
 docker ps
+docker ps a 
 sudo systemctl stop docker.socket
 sudo systemctl disable docker.socket
 
@@ -37,6 +38,11 @@ docker pull httpd:latest
 
 docker images
 docker run nginx
+docker run -d nginx
+
+docker inspect <container_id>
+curl ipaddress
+docker run -d -p nginx
 
 
 
