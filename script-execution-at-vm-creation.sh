@@ -47,8 +47,16 @@ docker run -d -p nginx
 docker build .
 docker build -f <filename> .
 
+ENTRYPOINT :-
 docker images
-docker build -t local/redhat .
+docker build -t local/nginx .
+docker run -d local/nginx
+docker ps -a
+docker inspect <container_id>
+curl <ipaddress>
+
+
+.
 
 
 
