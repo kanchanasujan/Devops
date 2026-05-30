@@ -86,12 +86,12 @@ resource "null_resource" "kind-setup" {
       "sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo",
       "sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y",
       "sudo systemctl start docker",
-      "sudo systemctl enable docker"
-      # ,"sudo usermod -a -G docker devops",
-      # "sudo curl -Lo /bin/kind https://kind.sigs.k8s.io/dl/v0.31.0/kind-linux-amd64",
-      # "sudo curl -Lo /bin/kubectl https://dl.k8s.io/release/v1.36.1/bin/linux/amd64/kubectl",
-      # "sudo chmod ugo+x /bin/kind /bin/kubectl",
-      # "sudo kind create cluster --name rhel10-cluster"
+      "sudo systemctl enable docker",
+      "sudo usermod -a -G docker devops",
+      "sudo curl -Lo /bin/kind https://kind.sigs.k8s.io/dl/v0.31.0/kind-linux-amd64",
+      "sudo curl -Lo /bin/kubectl https://dl.k8s.io/release/v1.36.1/bin/linux/amd64/kubectl",
+      "sudo chmod ugo+x /bin/kind /bin/kubectl",
+      "sudo kind create cluster --name rhel10-cluster"
     ]
 
   }
