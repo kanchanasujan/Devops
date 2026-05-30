@@ -25,21 +25,20 @@ docker run -d -p nginx
 docker build .
 docker build -f <filename> .
 
-ENTRYPOINT :-
-docker images
+# creates a custom Docker container image from a source blueprint located in your current folder or directory.
 docker build -t local/nginx .
+
+# Runs isolated; no ports are accessible from your host machine.
 docker run -d local/nginx
+
+# Automatically maps exposed container ports to random high-numbered ports on your host
+docker run -d -P local/nginx
+
+docker images
 docker ps -a
 docker inspect <container_id>
 curl <ipaddress>
-docker run -d -P local/nginx
 
-
-EXPOSE :-
-docker build -t local/nginx .
-docker run -d -P local/nginx
-docker ps 
-
-#Check logs
+# Check logs
 docker exec -it <container_id> bash
 cd /usr/share/nginx/html
