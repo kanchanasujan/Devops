@@ -58,7 +58,7 @@ data "azurerm_network_security_group" "existing" {
 }
 
 resource "azurerm_network_interface_security_group_association" "global_assoc" {
-  for_each                     = azurerm_network_interface.main
+  #for_each                     = azurerm_network_interface.main
   network_interface_id      = azurerm_network_interface.main.id
   network_security_group_id = data.azurerm_network_security_group.existing.id
 
