@@ -56,3 +56,16 @@ resource "azurerm_subnet_nat_gateway_association" "subnet_nat_assoc" {
   subnet_id      = azurerm_subnet.subnet.id
   nat_gateway_id = azurerm_nat_gateway.nat_gateway.id
 }
+
+
+sudo docker ps
+/etc/group | grep docker
+sudo usermod -aG docker $USER
+
+kind docker kurbenets cluster create --config=kind-config.yaml
+
+sudo curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+kind.sigs.k8s.io/docs/user/quick-start/#configuring-your-kubectl-context-to-talk-to-your-cluster
+sudo chmod +x /usr/local/bin/kubectl
+kind create cluster --name kind --config=kind-config.yaml
+kubectl cluster-info --context kind-kind
