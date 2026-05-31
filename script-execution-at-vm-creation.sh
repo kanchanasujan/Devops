@@ -58,10 +58,6 @@ resource "azurerm_subnet_nat_gateway_association" "subnet_nat_assoc" {
 }
 
 
-sudo docker ps
-/etc/group | grep docker
-sudo usermod -aG docker $USER
-
 kind docker kurbenets cluster create --config=kind-config.yaml
 
 sudo curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
@@ -69,3 +65,45 @@ kind.sigs.k8s.io/docs/user/quick-start/#configuring-your-kubectl-context-to-talk
 sudo chmod +x /usr/local/bin/kubectl
 kind create cluster --name kind --config=kind-config.yaml
 kubectl cluster-info --context kind-kind
+
+
+kubectl get pods -A
+kubectl run debug --image=rkalluru/debug
+kubectl get all
+kubectl delete pod <pod-name>
+kubectl delete pod <pod-name> --force --grace-period=0
+
+kubectl api-resources
+
+
+#Gets pods in all namespaces
+kubectl get pods
+
+#Run a pod with a debug image
+kubectl run debug --image=rkalluru/debug
+
+#run a pod with a debug image in a specific namespace
+kubectl run debug --image=rkalluru/debug -n test
+
+#run yaml `filename` to create a pod
+kubectl apply -f filename
+
+#check the running containers in the node where the pod is running
+docker ps
+
+#docker exec -it container-name bash
+docker exec -it <container-name> bash
+
+#kubectl display default container in the pod
+kubectl exec -it pod-name -- bash
+
+#kubectl display required container in the pod
+kubectl exec -it multi-container -c nginx -- bash
+
+#-o wide option to get more details about the pods
+kubectl gets pods -o wide
+
+curl localhost:port
+kubectl logs pod-nam
+
+docker run -d -v/root/learn-kubernetes:/opt nginx
