@@ -72,3 +72,14 @@ spec:
   - name: config
     configMap:
       name: game-demo-1
+
+
+
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# kubectl exec -it pod/configmap-demo4 -- bash
+# [root@configmap-demo4 /]# cat config/
+# cat: config/: Is a directory
+# [root@configmap-demo4 /]# cat /config/config
+# player_initial_lives="3"
+# score="5000"
+# name="John"
+# [root@configmap-demo4 /]# exit

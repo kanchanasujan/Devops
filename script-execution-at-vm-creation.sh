@@ -88,6 +88,9 @@ kubectl run debug --image=rkalluru/debug -n test
 #run yaml `filename` to create a pod
 kubectl apply -f filename
 
+#run yaml `filename` to delete a pod
+kubectl delete -f filename
+
 #check the running containers in the node where the pod is running
 docker ps
 
@@ -102,6 +105,13 @@ kubectl exec -it multi-container -c nginx -- bash
 
 #-o wide option to get more details about the pods
 kubectl gets pods -o wide
+
+#Labels for pods
+kubectl get pods --show-labels
+
+
+
+
 
 curl localhost:port
 kubectl logs pod-nam

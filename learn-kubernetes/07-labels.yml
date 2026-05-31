@@ -22,3 +22,23 @@ spec:
   containers:
     - name: c2
       image: rkalluru/learnk8s:rhel9-bare
+
+
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# kubectl get pods --show-labels
+# NAME                        READY   STATUS    RESTARTS   AGE    LABELS
+# ephmeral-container-example   1/1     Running   0          21m    <none>
+# p1                           1/1     Running   0          106s   application=c1,project=example
+# p2                           1/1     Running   0          105s   application=c2,project=example
+# pod-init-containers          1/1     Running   0          42m    <none>
+# sidecar-example              2/2     Running   0          26m    <none>
+
+# 9.205.16.224 | 10.1.0.10 | Standard_B1ms | https://github.com/kanchanasujan/Devops.git
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# kubectl get pods -l project=example
+# NAME   READY   STATUS    RESTARTS   AGE
+# p1     1/1     Running   0          2m22s
+# p2     1/1     Running   0          2m21s
+
+# 9.205.16.224 | 10.1.0.10 | Standard_B1ms | https://github.com/kanchanasujan/Devops.git
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# kubectl get pods -l application=c1
+# NAME   READY   STATUS    RESTARTS   AGE
+# p1     1/1     Running   0          2m39s

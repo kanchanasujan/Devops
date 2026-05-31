@@ -20,3 +20,16 @@ spec:
       containers:
       - name: nginx
         image: nginx:1.25
+
+
+        
+# 9.205.16.224 | 10.1.0.10 | Standard_B1ms | https://github.com/kanchanasujan/Devops.git
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# kubectl get replicaset
+# NAME                  DESIRED   CURRENT   READY   AGE
+# deploy01-5bb6f675d8   3         3         0       97s
+# rs01                  3         3         3       17m
+
+# 9.205.16.224 | 10.1.0.10 | Standard_B1ms | https://github.com/kanchanasujan/Devops.git
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# kubectl scale rs deploy01-5bb6f675d8 --replicas=4
+# replicaset.apps/deploy01-5bb6f675d8 scaled
+
