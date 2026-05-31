@@ -29,3 +29,20 @@ spec:
   containers:
   - name: redhat
     image: rkalluru/learnk8s:rhel9-bare
+
+
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# kubectl get pods
+# NAME              READY   STATUS    RESTARTS   AGE
+# clusterip-debug   1/1     Running   0          108s
+# service-demo      1/1     Running   0          108s
+
+# 9.205.16.224 | 10.1.0.10 | Standard_B1ms | https://github.com/kanchanasujan/Devops.git
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# kubectl get svc
+# NAME          TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+# kubernetes    ClusterIP   10.96.0.1       <none>        443/TCP   5h39m
+# service-cip   ClusterIP   10.96.121.125   <none>        80/TCP    2m8s
+
+# 9.205.16.224 | 10.1.0.10 | Standard_B1ms | https://github.com/kanchanasujan/Devops.git
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# kubectl exec -it clusterip-debug -- bash
+# [root@clusterip-debug /]# curl service-cip
+

@@ -9,3 +9,24 @@ spec:
       ports:
         - containerPort: 80
           hostPort: 8080
+
+
+# We are referring nginx container installed in docker and redirecting in cluster in kubernetes.
+#  So, we can access nginx in docker using localhost:8080 and it will redirect to nginx in kubernetes cluster. 
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# docker run -d -p 8000:80 nginx
+
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# docker ps
+# CONTAINER ID   IMAGE                  COMMAND                  CREATED          STATUS          PORTS                                     NAMES
+# 24347a23aaf2   nginx                  "/docker-entrypoint.…"   48 seconds ago   Up 22 seconds   0.0.0.0:8000->80/tcp, [::]:8000->80/tcp   amazing_newton
+# e47b10a9fb1d   kindest/node:v1.35.0   "/usr/local/bin/entr…"   5 hours ago      Up 30 minutes   127.0.0.1:38065->6443/tcp                 rhel10-cluster-control-plane
+
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# ss -lntp
+# State            Recv-Q           Send-Q                       Local Address:Port                        Peer Address:Port           Process
+# LISTEN           0                4096                               0.0.0.0:8000                             0.0.0.0:*               users:(("docker-proxy",pid=13175,fd=8))
+
+# [ root@docker-vm ~/Devops/learn-kubernetes ]# docker exec -it e47b10a9fb1d bash
+# root@rhel10-cluster-control-plane:/# curl localhost:8080
+# <!DOCTYPE html>
+# <html>
+# <head>
+# <title>Welcome to nginx!</title>
